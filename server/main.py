@@ -31,7 +31,7 @@ logger = logging.getLogger(__name__)
 
 
 def _img_is_label(img, label):
-    _, jpeg_frame = cv2.imencode('.jpg', img)
+    _, jpeg_frame = cv2.imencode('.jpeg', img)
     encoded_image = base64.b64encode(jpeg_frame).decode('utf-8')
 
     instances = {
@@ -130,12 +130,12 @@ class KnexEngine(cognitive_engine.Engine):
 
 class State(Enum):
     NOTHING = (None, None)
-    NOSE = ('Build the nose and put it on the table.', 'nose.jpg')
-    FUSELAGE = ('Now build the fuselage and attach it to the back of the nose.', 'fuselage.jpg')
-    REAR = ('Now build the rear section and attach it to the back of the fuselage.', 'rear.jpg')
-    TAIL = ('Now build the tail and attach it to the top of the rear section.', 'tail.jpg')
-    WINGS = ('Now build the wings and attach them to the sides of the fuselage.', 'wings.jpg')
-    DONE = ('You are done! Happy flying.', 'wings.jpg')
+    NOSE = ('Build the nose and put it on the table.', 'nose.jpeg')
+    FUSELAGE = ('Now build the fuselage and attach it to the back of the nose.', 'fuselage.jpeg')
+    REAR = ('Now build the rear section and attach it to the back of the fuselage.', 'rear.jpeg')
+    TAIL = ('Now build the tail and attach it to the top of the rear section.', 'tail.jpeg')
+    WINGS = ('Now build the wings and attach them to the sides of the fuselage.', 'wings.jpeg')
+    DONE = ('You are done! Happy flying.', 'wings.jpeg')
 
     def __init__(self, speech, image_filename):
         self._speech = speech
@@ -154,7 +154,7 @@ def main():
     def engine_factory():
         return KnexEngine()
 
-    local_engine.run(engine_factory, 'knex', 60, 9099, 2)
+    local_engine.run(engine_factory, 'sandwich', 60, 9098, 2)
 
 
 if __name__ == '__main__':
